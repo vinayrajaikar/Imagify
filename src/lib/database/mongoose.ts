@@ -13,12 +13,10 @@ interface MongooseConnection {
 
 // Extend global object to avoid TypeScript errors
 declare global {
-    // This ensures TypeScript recognizes `global.mongoose`
-    // when running in a Node.js environment.
     var mongoose: MongooseConnection | undefined;
 }
 
-const cached: MongooseConnection = global.mongoose || { conn: null, promise: null };
+const cached: MongooseConnection = global.mongoose ?? { conn: null, promise: null };
 
 export const connectToDatabase = async (): Promise<mongoose.Connection> => {
     if (cached.conn) return cached.conn; // Return existing cached connection
