@@ -13,6 +13,7 @@ interface MongooseConnection {
 
 // Extend global object to avoid TypeScript errors
 declare global {
+    /* eslint-disable no-var */ 
     var mongoose: MongooseConnection | undefined;
 }
 
