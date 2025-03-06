@@ -12,7 +12,7 @@ interface MongooseConnection {
 }
 
 // Ensure `global.mongoose` is correctly initialized
-let cached: MongooseConnection = (global as any).mongoose || { conn: null, promise: null };
+const cached: MongooseConnection = (global as any).mongoose || { conn: null, promise: null };
 
 export const connectToDatabase = async () => {
     if (cached.conn) return cached.conn; // Return existing cached connection
