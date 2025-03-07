@@ -8,6 +8,7 @@ import { createUser, deleteUser, updateUser } from '@/lib/actions/user.action';
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
+  console.log("Hello");
   if (!WEBHOOK_SECRET) {
     throw new Error("Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local");
   }
@@ -78,6 +79,7 @@ export async function POST(req: Request) {
 
   // UPDATE
   if (eventType === 'user.updated') {
+    console.log("Hello");
     const { id, image_url, first_name, last_name, username } = evt.data;
 
     const user = {
