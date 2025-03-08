@@ -6,6 +6,7 @@ import { Webhook } from 'svix';
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.action';
 
 export async function POST(req: Request) {
+  console.log("Hello")
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   console.log("Hello");
@@ -15,15 +16,18 @@ export async function POST(req: Request) {
 
   // Get the headers
   const headerPayload = await headers();
+  console.log("...hello3")
   const svix_id = headerPayload.get('svix-id');
   const svix_timestamp = headerPayload.get('svix-timestamp');
   const svix_signature = headerPayload.get('svix-signature');
+  console.log("...hello3")
 
   // Error handling for missing headers
   if (!svix_id || !svix_timestamp || !svix_signature) {
+    console.log("...hello3")
     return new Response("Error: Missing Svix headers", { status: 400 });
   }
-
+  console.log("...hello3")
   const payload = await req.json();
   const body = JSON.stringify(payload);
 
@@ -31,7 +35,7 @@ export async function POST(req: Request) {
   const wh = new Webhook(WEBHOOK_SECRET);
 
   let evt: WebhookEvent;
-
+  console.log("...hello3")
   // Verify the payload with the headers
   try {
     evt = wh.verify(body, {
@@ -109,3 +113,10 @@ export async function POST(req: Request) {
   return new Response("Error processing event", { status: 500 });
 
 }
+
+// import { NextResponse } from "next/server";
+
+// export async function POST(req: Request) {
+//   return NextResponse.json({ name: "Vinay" });
+// }
+
