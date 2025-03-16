@@ -150,9 +150,9 @@ const TransformationForm = ({action,data = null, userId, type, creditBalance, co
                     [fieldName === 'prompt' ? 'prompt' : 'to']: value
                 }
              }))
+        },1000)();
 
-            return onChangeField(value);
-        },1000);
+        return onChangeField(value);
   }
 
   // TODO: Return to updateCredits
@@ -200,7 +200,9 @@ const TransformationForm = ({action,data = null, userId, type, creditBalance, co
                     render={({field})=>(
                         <Select 
                             onValueChange={(value)=> 
-                            onSelectFieldHandler(value, field.onChange)}
+                                onSelectFieldHandler(value, field.onChange)
+                            }
+                            value={field.value}
                         >
                             <SelectTrigger className=" w-full border-2 border-purple-200/20 shadow-sm shadow-purple-200/15 rounded-[16px] h-[50px] md:h-[54px] text-dark-600 p-16-semibold disabled:opacity-100 placeholder:text-dark-400/50 px-4 py-3 focus:ring-offset-0 focus-visible:ring-transparent focus:ring-transparent focus-visible:ring-0 focus-visible:outline-none">
                                 <SelectValue placeholder="Select size" />
@@ -226,7 +228,7 @@ const TransformationForm = ({action,data = null, userId, type, creditBalance, co
                             type === 'remove' ? 'Object to remove' : 'Object to recolor'
                         }
                         className="w-full"
-                        render={(({field})=>(
+                        render={({field})=>(
                             <Input 
                                 value={field.value}
                                 className="rounded-[16px] border-2 border-purple-200/20 shadow-sm shadow-purple-200/15 text-dark-600 disabled:opacity-100 p-16-semibold h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important"
@@ -237,7 +239,7 @@ const TransformationForm = ({action,data = null, userId, type, creditBalance, co
                                     field.onChange
                                 )}
                             />
-                        ))}
+                        )}
                     />
 
                     {type === 'recolor' && (

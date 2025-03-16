@@ -49,14 +49,12 @@ export const formUrlQuery = ({
   searchParams,
   key,
   value,
-}: {
-  searchParams: URLSearchParams;
-  key: string;
-  value: string | null;
-}): string => {
+}: FormUrlQueryParams) => {
   const params = { ...qs.parse(searchParams.toString()), [key]: value };
 
-  return `${window.location.pathname}?${qs.stringify(params, { skipNulls: true })}`;
+  return `${window.location.pathname}?${qs.stringify(params, {
+    skipNulls: true,
+  })}`;
 };
 
 // REMOVE KEY FROM QUERY
