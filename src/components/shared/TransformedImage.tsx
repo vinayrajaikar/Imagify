@@ -1,5 +1,5 @@
 'use client'
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { dataUrl, debounce, download } from '@/lib/utils'
 import { Divide } from 'lucide-react'
 import { CldImage, getCldImageUrl } from 'next-cloudinary'

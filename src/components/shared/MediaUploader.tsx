@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // import toast from '@/components/ui/sonner'
 'use client';
 import { dataUrl } from "@/lib/utils";
 import {CldImage, CldUploadWidget} from "next-cloudinary"
-import { getImageSize } from "next/dist/server/image-optimizer";
+// import { getImageSize } from "next/dist/server/image-optimizer";
 import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import React from "react";
@@ -12,7 +13,13 @@ type MediaUploaderProps = {
     onValueChange: (value: string) => void;
     setImage: React.Dispatch<any>;
     publicId: string;
-    image: any;
+    image: {    
+        title: string,
+        aspectRatio: string,
+        color: string,
+        prompt: string,
+        publicId: string,
+    };
     type: string;   
 }
 
@@ -61,7 +68,6 @@ const MediaUploader = ({
         {({open})=>(
             <div className="flex flex-col gap-4">
                 <h3 className="text-xl font-bold text-dark-100">Original</h3>
-
                 {
                     publicId? (
                         <> 
