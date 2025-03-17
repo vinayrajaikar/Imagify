@@ -10,8 +10,11 @@ export const metadata: Metadata = {
   description: "Unleash Your Creative Vision with Imagify",
 };
 
+interface SearchParamProps {
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
-const Home = async ({ searchParams }: { searchParams: Record<string, string | string[] | undefined> }) => {
+const Home = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams.page) || 1;
   const searchQuery = (searchParams.query as string) || "";
 
