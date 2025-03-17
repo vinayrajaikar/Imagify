@@ -11,14 +11,14 @@ export const metadata: Metadata = {
 };
 
 
-const Home = async ({ searchParams }: SearchParamProps) => {
+const Home = async ({ searchParams }: { searchParams: Record<string, string | string[] | undefined> }) => {
   const page = Number(searchParams.page) || 1;
   const searchQuery = (searchParams.query as string) || "";
 
   const images = await getAllImages({ page, searchQuery });
 
   return (
-    <>
+    <> 
       {/* 🔹 Hero Section */}
       <section className="sm:flex justify-center items-center hidden h-72 flex-col gap-4 rounded-[20px] border bg-banner bg-cover bg-no-repeat p-10 bg-[#7068fc] shadow-inner">
         <h1 className="text-[36px] font-semibold sm:text-[44px] leading-[120%] sm:leading-[56px] max-w-[500px] flex-wrap text-center text-white text-4xl font-bold">
