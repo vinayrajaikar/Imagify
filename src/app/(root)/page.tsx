@@ -3,18 +3,20 @@ import { navLinks } from "@/constants";
 import { getAllImages } from "@/lib/actions/image.actions";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Imagify - Home",
+  description: "Unleash Your Creative Vision with Imagify",
+};
 
 interface PageProps {
-  searchParams: {
-    [key: string]: string | string[] | undefined;
-  };
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  params: {};
+  searchParams?: Record<string, string | string[] | undefined>;
 }
 
-const Home = async ({ searchParams }: PageProps) => {
-  const page = Number(searchParams?.page) || 1;
-  const searchQuery = (searchParams?.query as string) || "";
+const Home = async ({ searchParams = {} }: PageProps) => {
+  const page = Number(searchParams.page) || 1;
+  const searchQuery = (searchParams.query as string) || "";
 
   const images = await getAllImages({ page, searchQuery });
 
