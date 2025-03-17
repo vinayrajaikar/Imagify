@@ -1,7 +1,6 @@
 import React from "react";
-import { Control } from "react-hook-form";
+import { Control, ControllerRenderProps } from "react-hook-form";
 import { z } from "zod";
-
 import {
   FormField,
   FormItem,
@@ -12,10 +11,13 @@ import {
 
 import { formSchema } from "./TransformationForm";
 
+// Infer the schema type
+type FormSchemaType = z.infer<typeof formSchema>;
+
 type CustomFieldProps = {
-  control: Control<z.infer<typeof formSchema>> | undefined;
-  render: (props: { field: any }) => React.ReactNode;
-  name: keyof z.infer<typeof formSchema>;
+  control: Control<FormSchemaType> | undefined;
+  render: (props: { field: ControllerRenderProps<FormSchemaType, keyof FormSchemaType> }) => React.ReactNode;
+  name: keyof FormSchemaType;
   formLabel?: string;
   className?: string;
 };

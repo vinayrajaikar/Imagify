@@ -275,7 +275,7 @@ const TransformationForm = ({action,data = null, userId, type, creditBalance, co
                         <MediaUploader 
                             onValueChange={field.onChange}
                             setImage={setImage}
-                            publicId={field.value}
+                            publicId={field.value || ""}
                             image={image}
                             type={type}
                         />
