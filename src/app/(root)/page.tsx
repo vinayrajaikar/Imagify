@@ -4,22 +4,18 @@ import { getAllImages } from "@/lib/actions/image.actions";
 import Image from "next/image";
 import Link from "next/link";
 
-
 type SearchParamProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
 const Home = async ({ searchParams }: SearchParamProps) => {
-  // Extract and parse search parameters
   const page = Number(searchParams?.page) || 1;
   const searchQuery = (searchParams?.query as string) || "";
 
-  // Fetch images based on search params
   const images = await getAllImages({ page, searchQuery });
 
   return (
     <>
-      {/* 🔹 Hero Section */}
       <section className="sm:flex justify-center items-center hidden h-72 flex-col gap-4 rounded-[20px] border bg-banner bg-cover bg-no-repeat p-10 bg-[#7068fc] shadow-inner">
         <h1 className="text-[36px] font-semibold sm:text-[44px] leading-[120%] sm:leading-[56px] max-w-[500px] flex-wrap text-center text-white text-4xl font-bold">
           Unleash Your Creative Vision with Imagify
@@ -36,7 +32,6 @@ const Home = async ({ searchParams }: SearchParamProps) => {
         </ul>
       </section>
 
-      {/* 🔹 Collection Component */}
       <section className="sm:mt-12">
         <Collection hasSearch={true} images={images?.data} totalPages={images?.totalPage} page={page} />
       </section>
