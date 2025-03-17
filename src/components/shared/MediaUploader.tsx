@@ -2,7 +2,7 @@
 'use client';
 import { dataUrl } from "@/lib/utils";
 import {CldImage, CldUploadWidget} from "next-cloudinary"
-// import { getImageSize } from "next/dist/server/image-optimizer";
+import { getImageSize } from "next/dist/server/image-optimizer";
 import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import React from "react";
@@ -11,7 +11,7 @@ import { toast } from "sonner"
 type MediaUploaderProps = {
     onValueChange: (value: string) => void;
     setImage: React.Dispatch<any>;
-    publicId?: string;
+    publicId: string;
     image: any;
     type: string;   
 }
