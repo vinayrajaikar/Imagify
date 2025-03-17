@@ -1,5 +1,5 @@
 "use client"
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -20,7 +20,7 @@ import { useEffect, useState, useTransition } from "react"
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils"
 import MediaUploader from "./MediaUploader"
 import TransformedImage from "./TransformedImage"
-import { updateCredits } from "@/lib/actions/user.action"
+// import { updateCredits } from "@/lib/actions/user.action"
 import { getCldImageUrl } from "next-cloudinary"
 import { addImage, updateImage } from "@/lib/actions/image.actions"
 import { useRouter } from "next/navigation"
@@ -44,7 +44,7 @@ const TransformationForm = ({action,data = null, userId, type, creditBalance, co
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isTransforming, setIsTransforming] = useState(false);
     const [transformationConfig, setTransformationConfig] = useState(config);
-    const [isPending, startTransition] = useTransition();
+    // const [isPending, startTransition] = useTransition();
     const router = useRouter();
 
     const initialValues = data && action === 'Update' ? {
@@ -129,12 +129,15 @@ const TransformationForm = ({action,data = null, userId, type, creditBalance, co
   //for aspect ratio
   const onSelectFieldHandler = (value:string, onChangeField:(value:string)=> void)=>{
     const imageSize = aspectRatioOptions[value as AspectRatioKey]
-    setImage((prevState:any) =>({
-        ...prevState,
-        aspectRatio: imageSize.aspectRatio,
-        width: imageSize.width,
-        height: imageSize.height 
-    }))
+    // setImage((prevState:any) =>({
+    //     ...prevState,
+    //     aspectRatio: imageSize.aspectRatio,
+    //     width: imageSize.width,
+    //     height: imageSize.height 
+    // }))
+    setImage((prevState:any) =>(
+        console.log(prevState)
+    ))
     setNewTransformation(transformationType.config);
     return onChangeField(value);
   }
@@ -164,9 +167,9 @@ const TransformationForm = ({action,data = null, userId, type, creditBalance, co
         );
     }
     setNewTransformation(null);
-    startTransition(async () => {
-        await updateCredits(userId, creditFee)
-    });
+    // startTransition(async () => {
+    //     await updateCredits(userId, creditFee)
+    // });
   };
 
   useEffect(()=>{

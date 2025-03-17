@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { connectToDatabase } from "../database/mongoose";
 import { handleError } from "../utils";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import User from '../database/models/user.model'
 import Image from "../database/models/image.model";
 import { redirect } from "next/navigation";
