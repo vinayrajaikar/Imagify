@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 interface SearchParamProps {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 const fetchImages = async (page: number, searchQuery: string) => {
@@ -19,8 +19,11 @@ const fetchImages = async (page: number, searchQuery: string) => {
 };
 
 const Home = async ({ searchParams }: SearchParamProps) => {
-  const page = Number(searchParams.page) || 1;
-  const searchQuery = (searchParams.query as string) || "";
+  // Await the searchParams before using it
+  const resolvedSearchParams = await searchParams;
+  
+  const page = Number(resolvedSearchParams.page) || 1;
+  const searchQuery = (resolvedSearchParams.query as string) || "";
 
   const images = await fetchImages(page, searchQuery);
 
