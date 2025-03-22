@@ -59,12 +59,12 @@ const Checkout = ({
   };
 
   return (
-    <form action={onCheckout} method="POST">
+    <form onSubmit={(e) => { e.preventDefault(); onCheckout(); }}>
       <section>
         <Button
           type="submit"
           role="link"
-          className="w-full rounded-full bg-purple-gradient bg-cover"
+          className="w-full rounded-full bg-[#7068fc] bg-cover"
         >
           Buy Credit
         </Button>
